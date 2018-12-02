@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Learning D3</title>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+
+</head>
+
+<body>
+    <h1>Welcome to D3 learning!</h1>
+
+    <p> My name is <span class="name"></span></p>
+
+    <ul class="items">
+
+        <li>This is an item </li>
+        <li>This is an item </li>
+        <li>This is an item </li>
+        <li>This is an item </li>
+        <li>This is an item </li>
+
+
+
+    </ul>
+
+    <script>
+        /*    
+        var numArray = [101, 202, 303, 404, 505, 1001, 1002, 1003];
+
+        d3.selectAll('.items li')
+        .data(numArray)
+        .text(function(d){
+            return 'This is item number ' + d;
+        })
+*/
+
+        /*
+                var numArray = [10, 20, 30, 40, 50, 60];
+
+                d3.selectAll('.items li')
+                    .data(numArray)
+                    .style('font-size', function(d){
+                        return d+'px';
+                    })
+
+        */
+
+        var numArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        var Name = 'Abdur Razzak';
+
+        var li = d3.select('body').selectAll('.items li')
+            .data(numArray)
+            .text(function (d) {
+                return 'This is item number ' + d;
+            })
+
+        li.enter().append('li')
+            .text(function (d) {
+                return 'This is item number ' + d;
+            })
+
+        li.exit().remove();
+
+        d3.select('.name').text(Name);
+    </script>
+</body>
+
+</html>

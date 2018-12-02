@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Learning D3</title>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <style>
+        .big{
+            font-size: 24px;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Welcome to D3 learning!</h1>
+
+    <ul class="items">
+        
+        <li>This is an item 1</li>
+        <li>This is an item 2</li>
+        <li>This is an item 3</li>
+        <li>This is an item 4</li>
+        <li>This is an item 5</li>
+
+    </ul>
+
+    <script>
+        // d3.selectAll('li').style('color', 'red');
+
+        // d3.select('li').style('color', 'yellow');
+
+        // d3.select('li:nth-child(4n)').style('color', 'red');
+
+        // d3.select('li:nth-child(odd)').style('color', 'blue');
+
+        // d3.selectAll('li:nth-child(odd)').style('color', 'blue');
+
+        // d3.selectAll('li:nth-child(even)').style('color', 'blue');
+
+        d3.selectAll('li:nth-child(even)')
+        .style('color', 'blue')
+        .html('This is an Even number line')
+        .classed('big', true)
+        ;
+
+
+
+
+        
+        
+
+    </script>
+</body>
+</html>

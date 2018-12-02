@@ -1,0 +1,5 @@
+npm install d3
+
+npm install -g http-server   npm install -D http-server
+
+http-server & 
