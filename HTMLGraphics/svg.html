@@ -153,18 +153,221 @@
     </svg>
 
 
+    <hr>
+    <!-- -------------------------------------------------- -->
+
+    <h2>SVG Path</h2>
+
+    <svg height="210" width="400">
+        <path d="M150 0 L75 200 L225 200 Z" fill="" stroke="" stroke-width="" />
+    </svg>
+
+
+    <h2>Bézier curve</h2>
+
+    <svg height="400" width="450">
+        <path id="lineAB" d="M 100 350 l 150 -300" fill="none" stroke="red" stroke-width="3" />
+
+        <path id="lineBC" d="M 250 50 l 150 300" fill="none" stroke="red" stroke-width="3" />
+
+        <path d="M 175 200 l 150 0" fill="none" stroke="green" stroke-width="3" />
+
+        <path d="M 100 350 q 150 -300 300 0" fill="none" stroke="blue" stroke-width="5" />
+
+        <!-- Mark relevant points -->
+        <g stroke="black" stroke-width="3" fill="black">
+            <circle id="pointA" cx="100" cy="350" r="3" />
+            <circle id="pointB" cx="250" cy="50" r="3" />
+            <circle id="pointC" cx="400" cy="350" r="3" />
+            <!-- Label the points -->
+
+        </g>
+        <g font-size="30" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
+            <text x="100" y="350" dx="-30">A</text>
+            <text x="250" y="50" dy="-10">B</text>
+            <text x="400" y="350" dx="30">C</text>
+        </g>
+
+    </svg>
+
+
+    <h2>SVG Text</h2>
+
+    <svg height="30" width="200">
+        <text x="10" y="20" fill="red">I Love SVG</text>
+    </svg>
 
 
 
 
 
+    <h2>Rotate the text:</h2>
+
+    <svg height="60" width="200">
+        <text x="0" y="15" fill="red" transform="rotate(30 20,40)"> I Love SVG</text>
+    </svg>
 
 
 
 
+    <h2>SVG Text in several lines:</h2>
+
+    <svg height="90" width="200">
+        <text x="10" y="20" style="fill:red;">Several lines:
+            <tspan x="10" y="45">First line.</tspan>
+            <tspan x="50" y="70">Second line.</tspan>
+        </text>
+    </svg>
 
 
 
+
+    <h2>Text as a link</h2>
+
+    <svg width="200" height="30" viewBox="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <a xlink:href="https://www.w3schools.com/graphics/" target="_blank">
+            <text x="0" y="15" style="fill:rgb(25, 0, 255)">I Love SVG!</text>
+        </a>
+
+    </svg>
+
+
+    <h2>SVG Stroke Properties:</h2>
+
+    <h3>SVG stroke property</h3>
+
+    <svg height="80" width="300">
+        <g fill="none">
+            <path d="M5 20 l215 0" fill="" stroke="red" stroke-width="" />
+            <path d="M5 40 l215 0" fill="" stroke="black" stroke-width="" />
+            <path d="M5 60 l215 0" fill="" stroke="blue" stroke-width="" />
+        </g>
+    </svg>
+
+
+
+    <h2>SVG stroke-width property</h2>
+
+    <svg height="80" width="300">
+        <g fill="none" stroke="black">
+            <path d="M5 20 l215 0" fill="" stroke="" stroke-width="2" />
+
+            <path d="M5 40 l215 0" fill="" stroke="green" stroke-width="6" />
+
+            <path d="M5 60 l215 0" fill="" stroke="orange" stroke-width="6" />
+        </g>
+    </svg>
+
+
+    <h2>SVG stroke-linecap Property</h2>
+
+    <svg height="80" width="300">
+        <g fill="none" stroke="black" stroke-width="6">
+            <path d="M5 20 l215 0" fill="" stroke="" stroke-width="" stroke-linecap="butt" />
+            <path d="M5 40 l215 0" fill="" stroke="" stroke-width="" stroke-linecap="round" />
+            <path d="M5 60 l215 0" fill="" stroke="" stroke-width="" stroke-linecap="square" />
+        </g>
+    </svg>
+
+    <h2>SVG stroke-dasharray Property</h2>
+
+    <svg height="80" width="300">
+        <g fill="none" stroke="black" stroke-width="4">
+            <path d="M5 20 l215 0" fill="" stroke="" stroke-width="" stroke-dasharray="5,5" />
+            <path d="M5 40 l215 0" fill="" stroke="" stroke-width="" stroke-dasharray="10,10" />
+            <path d="M5 60 l215 0" fill="" stroke="" stroke-width="" stroke-dasharray="20,10,5,5,5,10" />
+        </g>
+    </svg>
+
+    <h3>feGaussianBlur = blur effects</h3>
+
+    <svg height="110" width="110">
+        <defs>
+            <filter id="f1" x="0" y="0">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+            </filter>
+        </defs>
+        <rect width="100" height="100" stroke="green" stroke-width="3" fill="yellow" filter="url(#f1)" />
+    </svg>
+
+    <h2>SVG Drop Shadows</h2>
+    <h3>teOffset = Shadows effects</h3>
+
+    <svg height="" width="">
+
+    </svg>
+
+    <h2></h2>
+    <svg height="120" width="120">
+        <defs>
+            <filter id="f1" x="0" y="0" width="200%" height="200%">
+                <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
+                <feBlend in="SourceGraphic" in2="offOut" mode="normal" />
+            </filter>
+        </defs>
+        <rect x="" y="" width="90" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f1)" />
+    </svg>
+
+
+    <h3>the offset image can be blurred</h3>
+
+    <svg height="140" width="140">
+        <defs>
+            <filter id="f2" x="0" y="0" width="200%" height="200%">
+                <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
+                <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+                <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+            </filter>
+
+        </defs>
+        <rect width="90" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f2)" />
+    </svg>
+
+    <h3>make the shadow black:</h3>
+
+    <svg width="140" height="140">
+        <defs>
+            <filter id="f3" x="0" y="0" width="200%" height="200%">
+                <feOffset result="offOut" in="SourceAlpha" dx="20" dy="20" />
+
+                <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+                <feBlend in="SourceGraphic" in2="blurOUt" mode="normal" />
+            </filter>
+        </defs>
+        <rect x="" y="" width="90" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f3)" />
+
+    </svg>
+
+    <h3>Now, treat the shadow as a color:</h3>
+
+    <svg width="140" height="140">
+        <defs>
+            <filter id="f1" x="0" y="0" width="200%" height="200%">
+                <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
+                <feColorMatrix result="matrixOut" in="offOut" type="matrix" values="0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0" />
+                <feGaussianBlur result="blurOut" in="matrixOut" stdDeviation="10" />
+                <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+            </filter>
+        </defs>
+        <rect x="" y="" width="90" height="90" style="stroke:green; stroke-width:3;fill:yellow;" filter="url(#f1)" />
+    </svg>
+
+
+
+<svg height="140" width="140">
+    <defs>
+      <filter id="f1" x="0" y="0" width="200%" height="200%">
+        <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
+        <feColorMatrix result = "matrixOut" in = "offOut" type = "matrix" values = "0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0"/>
+        <feGaussianBlur result="blurOut" in="matrixOut" stdDeviation="10" />
+        <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+      </filter>
+    </defs>
+    <rect width="90" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f1)" />
+    Sorry, your browser does not support inline SVG.
+  </svg>
+
+    
 
 </body>
 
