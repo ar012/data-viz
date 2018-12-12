@@ -1,0 +1,73 @@
+In this Javascript ES6 tutorial for beginners in bangla series the following topics will be discussed
+=====================================================================================================
+
+1.Introduction to ES6
+ No theory(I hate theory)
+ How to be benefited from the series
+ What will be covered in this series
+ What can be possible after completion the course
+2.concept of let and const
+ Idea of let and const
+ Scoping Issue with let and const
+ Should I use let and const instead of var(school of thoughts)
+3.Template string in javascript   
+ use of template string
+ practical use template string
+ Template tagging(modified the template strings before rendering)
+
+4. Array methods
+ -Foreach Helper
+ -map helper
+ -find helper
+ -some and every helper
+ -filter helper
+ -reduce helper
+
+5. Function in ES6
+ -statement vs Expression
+ -Default arguments
+ -several function to write array function 
+ -Where not to use array function
+
+6.Destructuring in ES6
+ -Array Destructuring
+ -Object Destructuring
+ -Practical implementation
+
+7.Enhance Object literal
+ -properties in object
+ -Method in Object
+
+8. Spread and rest operator in ES6 
+ -Difference between rest and spread operator
+ -practical use of rest and spread operator
+
+9. For of loop in ES6
+ -Limitation of other loop option and overcome those issue
+ -Looping of Object
+
+10.classes(Syntactic sugar in ES6)
+ -Use of ES6 classes
+ -methods in Es6 classes
+ -Inheritance ES6 classes
+ -static properties
+
+11.Tooling in ES6
+ -using webpack(go to webpack series module part)
+ -using System Js and babel
+ -Using ESLInt
+ 
+12.Module Introduction
+ -using module
+ -default and named export
+ -separate your code for maintenance, performance and debugging
+ 
+13.Symbols
+ -Using symbols(Idea is so simple)
+14.Generator function
+ -Pausing and resume function
+ -Using with ajax(practical Implementation)
+15.Fetch and Promise(Introduction)
+ -More on Asynchronous programming playlist
+ - sample practical application
+16. Proxies and conclusion
