@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+</head>
+
+<body>
+
+    <h1>Canvas Examples</h1>
+
+    <canvas id="myCanvas" width="200" height="100" style="border:2px solid blue;"></canvas>
+
+
+    <h2>Draw a Line</h2>
+
+    <canvas id="myCanvas2" width="200" height="100" style="border:1px solid #d3d3d3;">Your browser does not support the
+        HTML5 canvas tag.</canvas>
+
+    <script>
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext('2d');
+        ctx.moveTo(0, 0);
+        ctx.lineTo(200, 100);
+        ctx.stroke();
+    </script>
+
+    <br><br>
+    <canvas id="myCanvas3" width="200" height="100" style="border:1px solid #d3d3d3;">Your browser does not support the
+        HTML5 canvas tag.</canvas>
+
+    <script>
+        var c = document.getElementById("myCanvas3");
+        var ctx = c.getContext('2d');
+        ctx.moveTo(0, 100);
+        ctx.lineTo(200, 0);
+        ctx.stroke();
+    </script>
+
+
+    <h2>Draw a Circle:</h2>
+    <canvas id="circleCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">Your browser does not support
+        the HTML5 canvas tag.</canvas>
+
+
+    <script>
+        var canvas = document.getElementById("circleCanvas");
+        var context = canvas.getContext("2d");
+        context.beginPath();
+        context.arc(100, 50, 40, 0, 2 * Math.PI);
+        context.stroke();
+    </script>
+
+
+    <h2>Draw a Arc:</h2>
+    <canvas id="arcCanvas" width="200" height="200" style="border:1px solid #d3d3d3;">Your browser does not support
+        the HTML5 canvas tag.</canvas>
+
+
+    <script>
+        var canvas = document.getElementById("arcCanvas");
+        var context = canvas.getContext("2d");
+        context.beginPath();
+        // context.arc(100, 100, 50, 3*Math.PI / 2, 2*Math.PI);
+        // context.stroke();
+
+        // context.arc(100, 100, 50, Math.PI/2, Math.PI);
+        // context.stroke();
+
+        context.arc(100, 100, 50, 0, 2 * Math.PI);
+        context.stroke();
+
+        // Draw the horizontal line
+        context.moveTo(0, 100);
+        context.lineTo(200, 100);
+        context.stroke();
+
+        // Draw the vertical line
+        context.moveTo(100, 0);
+        context.lineTo(100, 200);
+        context.stroke();
+    </script>
+
+
+
+
+
+    <h2>Draw a Text</h2>
+
+    <canvas id="textCanvas" width="200" height="100" style="border: 1px solid #808080;"></canvas>
+
+    <script>
+        var c = document.getElementById('textCanvas');
+        var context = c.getContext('2d');
+        context.font = '25px Arial';
+        context.fillText("Hello World", 10, 50);
+    </script>
+
+
+    <br>
+    <h2>Strok Text</h2>
+    <canvas id="text_stroke" width="200" height="100" style="border:1px solid #808080"></canvas>
+
+    <script>
+        var c = document.getElementById("text_stroke");
+        var context = c.getContext('2d');
+        context.font = '30px sans-serif';
+        context.strokeText("Hello Wolde", 10, 50);
+    </script>
+
+
+
+
+    <h2>Draw Linear Gradient</h2>
+
+    <canvas id="lgrad" width="200" height="100" style="border:1px solid #808080"></canvas>
+
+
+    <script>
+        var c = document.getElementById("lgrad");
+        var context = c.getContext('2d');
+        // Create gradient
+        var grd = context.createLinearGradient(0, 0, 200, 0);
+        grd.addColorStop(0, "red");
+        grd.addColorStop(1, "white");
+
+        // Fill with gradient
+        context.fillStyle = grd;
+        context.fillRect(10, 10, 150, 80);
+    </script>
+
+    <br>
+
+    <h2>Draw Linear Gradient2</h2>
+
+    <canvas id="lgrad2" width="200" height="100" style="border:1px solid #808080"></canvas>
+
+    <script>
+        var c = document.getElementById("lgrad2");
+        var context = c.getContext('2d');
+
+        // Create gradient
+        var grd = context.createLinearGradient(0, 0, 200, 0);
+        grd.addColorStop(0, "BlueViolet ");
+        grd.addColorStop(0.5, "red");
+
+        // Fill with gradient
+        context.fillStyle = grd;
+        context.fillRect(50, 25, 100, 50);
+    </script>
+
+    <br><br>
+
+
+
+
+
+    <h2>Linear Gradient in Circle:</h2>
+    <canvas id="circleCanvas2" width="200" height="100" style="border:1px solid #d3d3d3;">Your browser does not support
+        the HTML5 canvas tag.</canvas>
+
+
+    <script>
+        var canvas = document.getElementById("circleCanvas2");
+        var context = canvas.getContext("2d");
+        context.beginPath();
+        context.arc(100, 50, 40, 0, 2 * Math.PI);
+        context.stroke();
+
+        // Create gradient
+    </script>
+
+
+
+
+
+
+
+    <h2>Draw Radial/Circular Gradient</h2>
+    <canvas id="cGradient" width="200" height="100" style="border: 1px solid #808080;"></canvas>
+
+    <script>
+        var c = document.getElementById("cGradient");
+        var context = c.getContext('2d');
+
+        // Create Gradient
+        var grd = context.createRadialGradient(100, 50, 20, 90, 60, 100);
+        grd.addColorStop(0, 'red');
+        grd.addColorStop(1, 'white');
+        // grd.addColorStop(0, 'red');
+
+        // Fill with gradient
+        context.fillStyle = grd;
+        context.fillRect(10, 10, 150, 80);
+    </script>
+
+
+
+
+    <h2>Draw Radial/Circular Gradient2</h2>
+    <canvas id="cGradient2" width="200" height="100" style="border: 1px solid #808080;"></canvas>
+
+    <script>
+        var c = document.getElementById("cGradient2");
+        var context = c.getContext('2d');
+
+        // Create Gradient
+        var grd = context.createRadialGradient(75, 50, 5, 90, 60, 100);
+        grd.addColorStop(0, 'red');
+        grd.addColorStop(1, 'white');
+
+        // Fill with gradient
+        context.fillStyle = grd;
+        context.fillRect(10, 10, 150, 80);
+    </script>
+
+
+    <h2>Canvas Text with fillText</h2>
+
+
+    <canvas id="helloWorld" width="200" height="100" style="border: 1px solid gray;"></canvas>
+
+    <script>
+        var canvas = document.getElementById("helloWorld");
+        var ctx = canvas.getContext("2d");
+        ctx.font = '30px Arial';
+        ctx.fillText("Hello World", 20, 60);
+    </script>
+
+
+    <h2>Canvas Text with strokeText</h2>
+
+
+    <canvas id="helloWorld2" width="200" height="100" style="border: 1px solid gray;"></canvas>
+
+    <script>
+        var canvas = document.getElementById("helloWorld2");
+        var ctx = canvas.getContext("2d");
+        ctx.font = '30px Arial';
+        ctx.strokeText("Hello World", 0, 20);
+        ctx.fillText("Hello World", 0, 100);
+        ctx.strokeText("Hello World", 10, 60);
+    </script>
+
+    <br><br>
+
+
+    <h2>Add Color and Center Text</h2>
+
+    <canvas id="centerText" width="200" height="100" style="border: 1px solid gray;"></canvas>
+
+    <script>
+        var canvas = document.getElementById("centerText");
+        var ctx = canvas.getContext("2d");
+        ctx.font = '30px Comic Sanse MS';
+        ctx.fillStyle = "red";
+        ctx.textAlign = 'center';
+
+        ctx.fillText("Hello World", canvas.width / 2, canvas.height / 2)
+        // ctx.fillText("Hello World", 100, 50)
+    </script>
+
+
+
+
+    <h2>Draw Image</h2>
+
+
+    <img id="natureimg" src="nature.jpg" alt="Nature Picture" width="220" height="210">
+
+    <p>Canvas:</p>
+    <canvas id="drawPic" width="250" height="250" style="border: 1px solid #808080;"></canvas>
+
+
+
+<!-- 
+    <script>
+        function drawPic() {
+            var c = document.getElementById("drawPic");
+            var context = c.getContext("2d");
+            var img = document.getElementById("nature");
+            context.drawImage(natureimg, 10, 10);
+        }
+    </script>
+
+    <p> <button onclick="drawPic()">Try It</button> </p> -->
+
+
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementById("drawPic");
+            var ctx = canvas.getContext('2d');
+            var img = document.getElementById("natureimg");
+            ctx.drawImage(img, 5, 5, 240, 240);
+            
+        }
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <br>
+
+    <h2>Draw on the canvas with JavaScript</h2>
+
+    <canvas id="myCanvas01" width="200" height="150" style="border: 1px solid #808080;"></canvas>
+
+    <script>
+        var canvas = document.getElementById('myCanvas01');
+        var context = canvas.getContext('2d');
+        context.fillStyle = 'green';
+        context.fillRect(10, 10, 100, 50);
+
+        get
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS Array</title>
+</head>
+
+<body>
+
+    <h2>Looping Array Elements</h2>
+
+
+    <p id="demo"></p>
+
+    <script>
+        var fruits, text, fLen, i;
+        fruits = ["Banana", "Orange", "Apple", "Mango"];
+        fLen = fruits.length;
+        text = "<ul>";
+        for (i = 0; i < fLen; i++) {
+            text += "<li>" + fruits[i] + "</li>";
+        }
+        text += "</ul>";
+        document.getElementById("demo").innerHTML = text;
+    </script>
+
+
+    <h3>Using Arry.forEach() function:</h3>
+
+<p id="demo2"></p>
+
+<script>
+    var fruits, text;
+    fruits = ["Banana", "Orange", "Apple", "Mango"];
+    text = "<ul>";
+    fruits.forEach(myFunction);
+    text += "</ul>";
+    function myFunction(value) {
+        text += "<li>" + value + "</li>";
+    }
+
+document.getElementById('demo2').innerHTML = text;
+</script>
+
+
+
+<p id="demo3"></p>
+
+<script>
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.getElementById("demo3").innerHTML = isArray(fruits);
+
+function isArray(myArray) {
+  return myArray.constructor.toString().indexOf("Array") > -1;
+}
+</script>
+
+
+<p id="demo4"></p>
+
+</body>
+
+</html>
