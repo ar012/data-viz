@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <style>
+        #svgRect {
+            width: 300px;
+            height: 250px;
+            border: 1px solid green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <h3>Rectangle in SVG</h3>
+    <svg id="svgRect">
+        <rect width="150" height="150"></rect>
+    </svg> -->
+
+
+    <h2>Polyline in SVG:</h2>
+    <svg height="200" width="300" style="border: 1px solid #808080">
+        <polyline points="20,70 60,10 60,150 120,60" style="fill:none; stroke:black;stroke-width:3" />
+    </svg>
+
+    <h2>Polyline2 in SVG:</h2>
+    <svg height="250" width="300" style="border: 1px solid #808080">
+        <polyline points="10,200 50,200 50,10 60,10 60,200 70,200 70,30 80,30 80,200 90,200 90,50, 100,50, 100,200, 110,200 110,70, 120,70 120,200 130,200 130,90, 140,90 140,200 200,200" style="fill:none; stroke:rgb(214, 97, 97);stroke-width:3" />
+    </svg>
+
+
+    <h3>polygon in SVG</h3>
+    <svg width="300" height="200" style="border: 1px solid #808080">
+        <polygon points="100,10 40, 198 192, 78 10, 78 160, 198" style="fill:lime; stroke:purple; stroke-width:5; fill-rule:evenodd;" />
+    </svg>
+
+    <h3>polygon2 in SVG</h3>
+    <svg width="300" height="250" style="border: 1px solid #808080">
+        <polygon points="10,100 60,10 150,10 200,100 " style="fill:lime; stroke:purple; stroke-width:5;" />
+
+        <polygon points="10,110 60,190 150,190 200,110 " style="fill:rgb(9, 243, 212); stroke:purple; stroke-width:5;" />
+    </svg>
+
+
+    <h3>Path in SVG</h3>
+    <svg width="350" height="350" style="border: 1px solid #808080">
+        
+        <path d="M100,90 L300,150 L300,300 Z M150,200 L30,30 L10,200 Z"
+             fill="none" stroke="#000" stroke-width="10" />
+    
+        
+    </svg>
+
+    
+
+</body>
+
+</html>
