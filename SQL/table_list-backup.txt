@@ -1,38 +1,3 @@
-CREATE OR REPLACE PROCEDURE proc_delete_company(companycode character varying) 
-LANGUAGE SQL  
-AS $$
-	DELETE FROM aa_settings WHERE company_code=companycode;
-	DELETE FROM ac_audit_trails WHERE company_code=companycode;
-	DELETE FROM ac_domains WHERE company_code=companycode;
-	DELETE FROM ac_emp_modules WHERE company_code=companycode;
-	DELETE FROM ac_emp_modules_new WHERE company_code=companycode;
-	DELETE FROM ac_emp_privgroups WHERE company_code=companycode;
-	DELETE FROM ac_emp_privgroups_new WHERE company_code=companycode;
-	DELETE FROM ac_emp_privs WHERE company_code=companycode;
-	DELETE FROM ac_emp_privs_new WHERE company_code=companycode;
-	DELETE FROM ac_emp_privs_wip WHERE company_code=companycode;
-	
-	
-$$;
-
-
-CALL proc_delete_company('IMC');
-
-SELECT company_code FROM ac_domains;
-
-/*
-Pls keep track of the clients. We need to delete all data about them:
-
-OMEGA
-EBL
-GLIL
-*/
-
-
-
-_templates
-_templates_wip
-
 aa_settings
 ac_audit_trails
 ac_domains
@@ -750,14 +715,3 @@ wf_workflows
 wh_settings
 wppf_settings
 ww_settings
-
-
-
-
-
-
-
-
-
-
-select * from information_schema.tables where table_schema='public';
