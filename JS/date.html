@@ -17,12 +17,44 @@
     </script> -->
 
 
-    <script>
-        var d = new Date("20,december,2018");
+<!-- <script>
+        var msec = Date.parse("20,december,2018");
+        var d = new Date(msec);
         document.getElementById("demo").innerHTML = d;
-        // document.getElementById("demo").innerHTML = d.toString();
-    </script>
+    </script> -->
+<!-- 
+<script>
+    var d = new Date();
 
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+        "November", "December"
+    ];
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    // document.getElementById("demo").innerHTML = d;
+    // document.getElementById("demo").innerHTML = d.getTime();
+    // document.getElementById("demo").innerHTML = d.getFullYear();
+    // document.getElementById("demo").innerHTML = d.getMonth();
+    // document.getElementById("demo").innerHTML = months[d.getMonth()];
+    // document.getElementById("demo").innerHTML = d.getDate();
+    // document.getElementById("demo").innerHTML = d.getHours();
+    // document.getElementById("demo").innerHTML = d.getMinutes();
+    // document.getElementById("demo").innerHTML = d.getSeconds();
+    // document.getElementById("demo").innerHTML = d.getMilliseconds();
+    // document.getElementById("demo").innerHTML = d.getDay();
+    // document.getElementById("demo").innerHTML = days[d.getDay()];
+    // document.getElementById("demo").innerHTML = d.getUTCDate();
+    // document.getElementById("demo").innerHTML = d.getUTCHours();
+    // document.getElementById("demo").innerHTML = d.getHours();
+    document.getElementById("demo").innerHTML = d.getUTCSeconds();
+</script> -->
+
+
+<script>
+    var d = new Date();
+    // d. setFullYear(2010);
+    // document.getElementById("demo").innerHTML = d;
+    document.getElementById("demo").innerHTML = d.getMonth();
+</script>
 
 </body>
 

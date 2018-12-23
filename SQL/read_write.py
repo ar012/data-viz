@@ -4,17 +4,38 @@ Reading the file table_list.txt and writing to the file data_delete.sql:
 '''
 
 ## Reading the file table_list.txt
-with open('./table_list.txt') as fobj:
+# ================================
+with open('./table_list.csv') as fobj:
     lines = fobj.readlines()
 
-# print(lines)
+## Assigning client
+# =================
+company = "'BB1010'"
 
+# company1 = "'OMEGA'"
+# company2= "'EBL'"
+
+# client= "'CTS'"
+
+
+## Creating the sql file having company_code
+# ==========================================
 for line in lines:
     table_name = line
-    # print(table_name)
-    # print("DELETE FROM " + table_name + "    WHERE company_code=companycode;")
-    print("DELETE FROM " + table_name + "    WHERE company_code='OMEGA';")
-    # print("DELETE FROM " + table_name + "    WHERE company_code='EBL';")
-    # print("DELETE FROM " + table_name + "    WHERE company_code='GLIL';")
-   
 
+    # print("DELETE FROM " + table_name + "    WHERE client_code != "+client+";")
+
+
+    print("DELETE FROM " + table_name + "    WHERE company_code="+company+";")
+
+    # print("DELETE FROM " + table_name + "    WHERE company_code != "+company+";")
+
+    # print("DELETE FROM " + table_name + "    WHERE company_code IN ("+company1+", "+company2+", "+company3+");")
+
+    # print("DELETE FROM " + table_name + "    WHERE company_code='OMEGA';")
+
+
+
+## Running read_write.py script
+# =============================
+# python3 read_write.py > OMEGA.sql

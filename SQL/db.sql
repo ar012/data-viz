@@ -22,3 +22,9 @@ db=>\q
 Copy (Select * From foo) To '/tmp/test.csv' With CSV DELIMITER ',';
 
 COPY (SELECT * from users) To '/tmp/output.csv' With CSV;
+
+
+
+
+DELETE FROM aa_settings
+    WHERE company_code IN ('OMEGA', 'EBL', 'GLIL');

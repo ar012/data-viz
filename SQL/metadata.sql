@@ -45,9 +45,9 @@ where a.attname = 'company_code' and c.relkind = 'r'
 
 --How to write a query to find all tables in a db that have a specific column name
 ----------------------------------------------------------------------------------
- select table_name from information_schema.columns where column_name = 'company_code'
+SELECT table_name FROM information_schema.columns WHERE column_name = 'company_code';
 
-select table_name from information_schema.columns where column_name != 'company_code'
+SELECT table_name FROM information_schema.columns WHERE column_name != 'company_code';
 
 
 --How to write a query to find all tables in a db that have a specific column name
@@ -56,6 +56,12 @@ select table_name from information_schema.columns where column_name != 'company_
 SELECT table_catalog, table_schema, table_name, column_name
 FROM INFORMATION_SCHEMA.columns
 WHERE column_name = '<your column name>';
+
+SELECT table_catalog, table_schema, table_name, column_name
+FROM INFORMATION_SCHEMA.columns
+WHERE column_name = 'company_code';
+
+
 
 
 --How many tables in a database?
@@ -79,9 +85,14 @@ COPY (select table_name from information_schema.columns where column_name = 'com
 \copy (select * from tempTable limit 100) to 'filenameinquotes' with header delimiter as ','
 
 
+COPY (SELECT table_name FROM information_schema.columns WHERE column_name = 'company_code') TO '/data/table_list.csv' (format csv, delimiter ';')
+
+
+COPY (SELECT table_name FROM information_schema.columns WHERE column_name = 'client_code') TO '/data/client_table_list.csv' (format csv, delimiter ';')
 
 
 
-
-
+-- Delete rows from table 'table_name'
+DELETE FROM ( SELECT table_name FROM information_schema.columns WHERE column_name = 'client_code' )
+WHERE 	client_code != 'CTS';
 

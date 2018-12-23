@@ -1,3 +1,4 @@
-var d = new Date();
+// var d = new Date();
+var msec = Date.parse("March 21, 2012");
 
-console.log(d);
+console.log(msec);
