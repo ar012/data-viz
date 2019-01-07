@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
-    <style>
-        p {
-            margin: 30px;
-            background: yellow;
-            border: 1px solid green;
-            /* outline: 1px solid red; */
-            outline-style: solid;
-            outline-width: 1px;
-            outline-color: red;
-            outline-offset: 15px;
-        }
-    </style>
 </head>
-<body>
-    <div>
 
-       <h2>The outline-offset Property</h2>
-       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, veritatis repudiandae repellat quos eaque iste error sint hic atque, voluptatibus quas quod dicta sapiente fuga autem iure unde rem labore.</p>
-    </div>
-</body>
+<body>
+    <p>Input your age and click the button:</p>
+    <input id="age" value="18">
+    <button onclick="myFunction()">Try it</button>
+
+    <p id="demo"></p>
+
+    <script>
+        /*
+        function myFunction() {
+            var age, voteable;
+            age = document.getElementById("age").value;
+            voteable = (age < 18) ? "Too young" : "Old enough";
+            document.getElementById("demo").innerHTML = voteable + " to vote."
+        }
+*/
+
+        function myFunction() {
+            var age, voteable;
+            age = document.getElementById("age").value;
+            if (isNaN(age)) {
+                voteable = "Input in not a number";
+            } else {
+                voteable = (age < 18) ? "Too young" : "Old enough";
+            }
+            document.getElementById("demo").innerHTML = voteable
+        }
+    </script>
+
 </html>
