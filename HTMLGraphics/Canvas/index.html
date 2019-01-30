@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Canvas</title>
+
+  <style>
+    #rectangle {
+      border: 1px solid gray;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  
+
+  <h1>Draw rectangle</h1>
+
+  <canvas id="rectangle" width="600" height="500">
+    your browser not supported canvas!
+  </canvas>
+
+
+  <script>
+    var context = document.getElementById("rectangle").getContext("2d");
+    context.strokeRect(100,50, 200,100);
+    context.fillRect(0,0, 200,100);
+    context.clearRect(50,50, 50,100);
+
+
+
+    context.lineWidth = 5;
+    context.strokeStyle = "red";
+    // context.lineJoin = "miter"; 
+    // context.lineJoin = "round";
+    context.lineJoin = "bevel";
+    context.strokeRect(50,180, 200,100);
+
+    context.fillStyle = "yellow";
+    context.fillRect(10,300, 100,100);
+    
+
+
+  </script>
+</body>
+</html>
