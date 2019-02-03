@@ -233,3 +233,43 @@ console.log(points);
 console.log(points[0]);
 
 console.log(points[points.length -1]);
+
+
+
+
+var btsmap = {
+    char_rajibpur: {
+      center: {
+        lat: 25.418974,
+        lng: 89.779296
+      },
+      radius: 8000,
+      cells:{
+          cell1: {
+              serial: 1,
+              cell_id: "ABC121",
+              azimuth: 30,
+              tilt: 40,
+              ta: 4,
+              eirp: 20
+          },
+          cell2: {
+              serial: 2,
+              cell_id: "ABC122",
+              azimuth: 150,
+              tilt: 40,
+              ta: 4,
+              eirp: 20
+          },
+          cell3: {
+              serial: 3,
+              cell_id: "ABC123",
+              azimuth: 240,
+              tilt: 40,
+              ta: 4,
+              eirp: 20
+          }
+      }
+    }
+    
+  }
