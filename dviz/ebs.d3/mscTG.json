@@ -1,0 +1,24 @@
+{
+  "nodes": [
+    {"bts": "MSC023", "size": 30},
+    {"bts": "BSC 17", "size": 20},
+    {"bts": "BSC 43", "size": 20},
+    {"bts": "BSC 13", "size": 20},
+    {"bts": "BSC 14", "size": 20},
+    {"bts": "GMS 44", "size": 20},
+    {"bts": "CC 19", "size": 20},
+    {"bts": "VAS 16", "size": 20},
+    {"bts": "Cell 202", "size": 20}
+  ],
+  "links": [
+    {"source": 0, "target": 1, "bond": 1},
+    {"source": 0, "target": 2, "bond": 1},
+    {"source": 0, "target": 3, "bond": 1},
+    {"source": 0, "target": 4, "bond": 1},
+    {"source": 0, "target": 5, "bond": 1},
+    {"source": 0, "target": 6, "bond": 1},
+    {"source": 0, "target": 7, "bond": 1},
+    {"source": 0, "target": 8, "bond": 1}
+   
+  ]
+}

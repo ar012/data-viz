@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Network</title>
+
+
+  <style>
+
+    .link line {
+      stroke: #696969;
+    }
+    
+    .link line.separator {
+      stroke: #fff;
+      stroke-width: 2px;
+    }
+    
+    .node circle {
+      cursor: pointer;
+      stroke: #3182bd;
+      stroke-width: 1.5px;
+    }
+    
+    .node text {
+      font: 10px sans-serif;
+      pointer-events: none;
+    }
+    
+    </style>
+
+</head>
+<body>
+
+  <h3>MSC Cell Official Documentation</h3>
+  <p>Operator: GP</p>
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  
+  <div id="msccell"></div>
+
+<script>
+
+  var mscCell = {
+  "nodes": [
+    {"bts": "MSC 023", "size": 30},
+    {"bts": "BSC 11", "size": 25},
+    {"bts": "BSC 12", "size": 25},
+    {"bts": "BSC 13", "size": 25},
+    {"bts": "BSC 14", "size": 25},
+    {"bts": "BSC 15", "size": 25},
+    {"bts": "BSC 16", "size": 25},
+    {"bts": "BSC 17", "size": 25},
+    {"bts": "BTS 101", "size": 20},
+    {"bts": "BTS 102", "size": 20},
+    {"bts": "BTS 103", "size": 20},
+    {"bts": "BTS 301", "size": 20},
+    {"bts": "BTS 302", "size": 20},
+    {"bts": "BTS 303", "size": 20},
+    {"bts": "BTS 304", "size": 20},
+    {"bts": "BTS 305", "size": 20},
+    {"bts": "BTS 306", "size": 20},
+    {"bts": "BTS 107", "size": 20},
+    {"bts": "Cell 1021", "size": 15},
+    {"bts": "Cell 1022", "size": 15},
+    {"bts": "Cell 1023", "size": 15},
+    {"bts": "Cell 1024", "size": 15},
+    {"bts": "Cell 1025", "size": 15},
+    {"bts": "Cell 1026", "size": 15},
+    {"bts": "Cell 1027", "size": 15},
+    {"bts": "Cell 1028", "size": 15}
+  ],
+  "links": [
+    {"source": 0, "target": 1,  "bond": 1},
+    {"source": 0, "target": 2,  "bond": 1},
+    {"source": 0, "target": 3,  "bond": 1},
+    {"source": 0, "target": 4,  "bond": 1},
+    {"source": 0, "target": 5,  "bond": 1},
+    {"source": 0, "target": 6,  "bond": 1},
+    {"source": 0, "target": 7,  "bond": 1},
+    {"source": 1, "target": 8,  "bond": 1},
+    {"source": 1, "target": 9,  "bond": 1},
+    {"source": 1, "target": 10, "bond": 1},
+    {"source": 2, "target": 11, "bond": 1},
+    {"source": 2, "target": 12, "bond": 1},
+    {"source": 2, "target": 13, "bond": 1},
+    {"source": 3, "target": 14, "bond": 1},
+    {"source": 3, "target": 15, "bond": 1},
+    {"source": 3, "target": 16, "bond": 1},
+    {"source": 3, "target": 17, "bond": 1},
+    {"source": 8, "target": 18, "bond": 1},
+    {"source": 8, "target": 19, "bond": 1},
+    {"source": 8, "target": 20, "bond": 1},
+    {"source": 9, "target": 21, "bond": 1},
+    {"source": 9, "target": 22, "bond": 1},
+    {"source": 9, "target": 23, "bond": 1},
+    {"source": 9, "target": 24, "bond": 1},
+    {"source": 9, "target": 25, "bond": 1}
+  ]
+}
+
+var width = 1200,
+    height = 700;
+
+var color = d3.scale.category20();
+
+var radius = d3.scale.sqrt()
+    .range([0, 6]);
+
+var svg = d3.select("#msccell").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var force = d3.layout.force()
+    .size([width, height])
+    .charge(-400)
+    .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 20; });
+
+d3.json("mscCell.json", function(error, graph) {
+  if (error) throw error;
+
+  force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .on("tick", tick)
+      .start();
+
+  var link = svg.selectAll(".link")
+      .data(graph.links)
+    .enter().append("g")
+      .attr("class", "link");
+
+  link.append("line")
+      .style("stroke-width", function(d) { return (d.bond * 2 - 1) * 2 + "px"; });
+
+  link.filter(function(d) { return d.bond > 1; }).append("line")
+      .attr("class", "separator");
+
+  var node = svg.selectAll(".node")
+      .data(graph.nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .call(force.drag);
+
+  node.append("circle")
+      .attr("r", function(d) { return radius(d.size); })
+      .style("fill", function(d) { return color(d.bts); });
+
+  node.append("text")
+      .attr("dy", ".35em")
+      .attr("text-anchor", "middle")
+      .text(function(d) { return d.bts; });
+
+  function tick() {
+    link.selectAll("line")
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+  }
+});
+</script>
+
+
+
+</body>
+</html>
+
+
+
+

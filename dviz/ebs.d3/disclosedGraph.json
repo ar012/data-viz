@@ -1,0 +1,31 @@
+{
+  "nodes": [
+    {"bts": "GP", "size": 30},
+    {"bts": "MSC01", "size": 20},
+    {"bts": "MSC02", "size": 20},
+    {"bts": "MSC03", "size": 20},
+    {"bts": "Cell 102", "size": 15},
+    {"bts": "Cell 101", "size": 15},
+    {"bts": "Cell 103", "size": 15},
+    {"bts": "Cell 201", "size": 15},
+    {"bts": "Cell 202", "size": 15},
+    {"bts": "Cell 203", "size": 15},
+    {"bts": "Cell 301", "size": 15},
+    {"bts": "Cell 302", "size": 15},
+    {"bts": "Cell 303", "size": 15}
+  ],
+  "links": [
+    {"source": 0, "target": 1,  "bond": 1},
+    {"source": 0, "target": 2,  "bond": 1},
+    {"source": 0, "target": 3,  "bond": 1},
+    {"source": 1, "target": 4,  "bond": 1},
+    {"source": 1, "target": 5,  "bond": 1},
+    {"source": 1, "target": 6,  "bond": 1},
+    {"source": 2, "target": 7, "bond": 1},
+    {"source": 2, "target": 8, "bond": 1},
+    {"source": 2, "target": 9,  "bond": 1},
+    {"source": 3, "target": 10,  "bond": 1},
+    {"source": 3, "target": 11,  "bond": 1},
+    {"source": 3, "target": 12, "bond": 1}
+  ]
+}
