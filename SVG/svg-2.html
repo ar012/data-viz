@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SVG</title>
+
+  <style>
+    .canvas{
+      height: 300px;
+      width: 300px;
+      border: 1px solid grey;
+    }
+
+    .canvas2{
+      height: 400px;
+      width: 500px;
+      border: 2px solid green;
+    }
+    .canvas3{
+      height: 200px;
+      width: 200px;
+      border: 1px solid blue;
+    }
+  </style>
+</head>
+<body>
+  
+<svg class="canvas">
+    <path d="M150 0 L75 200 L225 200 Z"
+    fill="green" stroke="yellow" stroke-width="2" />
+</svg>
+
+<svg class="canvas">
+    <path d="m150 0 l50 100 l50 100 z"
+    fill="blue" stroke="green" stroke-width="3" />
+</svg>
+ 
+<svg class="canvas2">
+  <path id="lineAB" d="M 100 350 l 150 -300"
+     fill="none" stroke="red" stroke-width="3" />
+  <path id="lineBC" d="M 250 50 l 150 300"
+     fill="none" stroke="red" stroke-width="3" />
+  <path d="M 175 200 l 150 0"
+     fill="none" stroke="green" stroke-width="3" />
+  <path d="M 100 350 q 150 -300 300 0"
+     fill="none" stroke="blue" stroke-width="5" />
+     <!-- Mark relevant points -->
+    <g stroke="black" stroke-width="3" fill="black">
+      <circle id="pointA" cx="100" cy="350" r="3" style=""/>
+      <circle id="pointB" cx="250" cy="50" r="3" style=""/>
+      <circle id="pointC" cx="400" cy="350" r="3" style=""/>
+    </g>
+    <!-- Label the points -->
+    <g font-size="30" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
+        <text x="100"  y="350" dx="-30">A</text>
+        <text x="250"  y="50" dy="-10">B</text>
+        <text x="400"  y="350" dx="30">C</text>
+    </g>
+
+</svg>
+
+<svg class="canvas3">
+    <text x="0" y="15" fill="red">I love SVG!</text>
+  </svg>
+
+
+<svg class="canvas3">
+    <text x="0" y="15" fill="red" transform="rotate(30 20,40)">I love SVG</text>
+    Sorry, your browser does not support inline SVG.
+  </svg>
+
+</body>
+</html>
