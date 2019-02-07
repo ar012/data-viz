@@ -21,11 +21,11 @@
     .node circle {
       cursor: pointer;
       stroke: #3182bd;
-      stroke-width: 1.5px;
+      stroke-width: 0px;
     }
     
     .node text {
-      font: 10px sans-serif;
+      font: 8px sans-serif;
       pointer-events: none;
     }
     
@@ -42,63 +42,94 @@
 
 <script>
 
-  var mscCell = {
+  var mscCellData = {
   "nodes": [
-    {"bts": "MSC 023", "size": 30},
-    {"bts": "BSC 11", "size": 25},
-    {"bts": "BSC 12", "size": 25},
-    {"bts": "BSC 13", "size": 25},
-    {"bts": "BSC 14", "size": 25},
-    {"bts": "BSC 15", "size": 25},
-    {"bts": "BSC 16", "size": 25},
-    {"bts": "BSC 17", "size": 25},
-    {"bts": "BTS 101", "size": 20},
-    {"bts": "BTS 102", "size": 20},
-    {"bts": "BTS 103", "size": 20},
-    {"bts": "BTS 301", "size": 20},
-    {"bts": "BTS 302", "size": 20},
-    {"bts": "BTS 303", "size": 20},
-    {"bts": "BTS 304", "size": 20},
-    {"bts": "BTS 305", "size": 20},
-    {"bts": "BTS 306", "size": 20},
-    {"bts": "BTS 107", "size": 20},
-    {"bts": "Cell 1021", "size": 15},
-    {"bts": "Cell 1022", "size": 15},
-    {"bts": "Cell 1023", "size": 15},
-    {"bts": "Cell 1024", "size": 15},
-    {"bts": "Cell 1025", "size": 15},
-    {"bts": "Cell 1026", "size": 15},
-    {"bts": "Cell 1027", "size": 15},
-    {"bts": "Cell 1028", "size": 15}
+    {"id": 0, "bts": "MSC 023", "size": 30},
+    {"id": 1, "bts": "BSC 11", "size": 25},
+    {"id": 2, "bts": "BSC 12", "size": 25},
+    {"id": 3, "bts": "BSC 13", "size": 25},
+    {"id": 4, "bts": "BSC 16", "size": 25},
+    {"id": 5, "bts": "BSC 14", "size": 25},
+    {"id": 6, "bts": "BSC 15", "size": 25},
+    {"id": 7, "bts": "BSC 16", "size": 25},
+    {"id": 8, "bts": "BSC 17", "size": 25},
+    {"id": 9, "bts": "BSC 18", "size": 25},
+    {"id": 10, "bts": "BSC 19", "size": 25},
+    {"id": 11, "bts": "BTS 100", "size": 25},
+    {"id": 12, "bts": "BTS 101", "size": 20},
+    {"id": 13, "bts": "BTS 102", "size": 20},
+    {"id": 14, "bts": "BTS 103", "size": 20},
+    {"id": 15, "bts": "BTS 104", "size": 20},
+    {"id": 16, "bts": "BTS 105", "size": 20},
+    {"id": 17, "bts": "BTS 106", "size": 20},
+    {"id": 18, "bts": "BTS 107", "size": 20},
+    {"id": 19, "bts": "BTS 108", "size": 20},
+    {"id": 20, "bts": "BTS 109", "size": 20},
+    {"id": 21, "bts": "BTS 110", "size": 20},
+    {"id": 22, "bts": "Cell 1021", "size": 10},
+    {"id": 23, "bts": "Cell 1022", "size": 10},
+    {"id": 24, "bts": "Cell 1023", "size": 10},
+    {"id": 25, "bts": "Cell 1024", "size": 10},
+    {"id": 26, "bts": "Cell 1025", "size": 10},
+    {"id": 27, "bts": "Cell 1026", "size": 10},
+    {"id": 28, "bts": "Cell 1027", "size": 10},
+    {"id": 29, "bts": "Cell 1028", "size": 10},
+    {"id": 30, "bts": "Cell 1029", "size": 10},
+    {"id": 31, "bts": "Cell 1030", "size": 10},
+    {"id": 32, "bts": "Cell 1021", "size": 10},
+    {"id": 33, "bts": "Cell 1022", "size": 10},
+    {"id": 34, "bts": "Cell 1023", "size": 10},
+    {"id": 35, "bts": "Cell 1024", "size": 10},
+    {"id": 36, "bts": "Cell 1025", "size": 10},
+    {"id": 37, "bts": "Cell 1026", "size": 10},
+    {"id": 38, "bts": "Cell 1027", "size": 10},
+    {"id": 39, "bts": "Cell 1028", "size": 10},
+    {"id": 40, "bts": "Cell 1029", "size": 10}
   ],
   "links": [
-    {"source": 0, "target": 1,  "bond": 1},
-    {"source": 0, "target": 2,  "bond": 1},
-    {"source": 0, "target": 3,  "bond": 1},
-    {"source": 0, "target": 4,  "bond": 1},
-    {"source": 0, "target": 5,  "bond": 1},
-    {"source": 0, "target": 6,  "bond": 1},
-    {"source": 0, "target": 7,  "bond": 1},
-    {"source": 1, "target": 8,  "bond": 1},
-    {"source": 1, "target": 9,  "bond": 1},
-    {"source": 1, "target": 10, "bond": 1},
-    {"source": 2, "target": 11, "bond": 1},
-    {"source": 2, "target": 12, "bond": 1},
-    {"source": 2, "target": 13, "bond": 1},
-    {"source": 3, "target": 14, "bond": 1},
-    {"source": 3, "target": 15, "bond": 1},
-    {"source": 3, "target": 16, "bond": 1},
-    {"source": 3, "target": 17, "bond": 1},
-    {"source": 8, "target": 18, "bond": 1},
-    {"source": 8, "target": 19, "bond": 1},
-    {"source": 8, "target": 20, "bond": 1},
-    {"source": 9, "target": 21, "bond": 1},
-    {"source": 9, "target": 22, "bond": 1},
-    {"source": 9, "target": 23, "bond": 1},
-    {"source": 9, "target": 24, "bond": 1},
-    {"source": 9, "target": 25, "bond": 1}
+    {"conn": 1, "source": 0, "target": 1,  "bond": 1},
+    {"conn": 2, "source": 0, "target": 2,  "bond": 1},
+    {"conn": 3, "source": 0, "target": 3,  "bond": 1},
+    {"conn": 4, "source": 0, "target": 4,  "bond": 1},
+    {"conn": 5, "source": 0, "target": 5,  "bond": 1},
+    {"conn": 6, "source": 0, "target": 6,  "bond": 1},
+    {"conn": 7, "source": 0, "target": 7,  "bond": 1},
+    {"conn": 8, "source": 0, "target": 8,  "bond": 1},
+    {"conn": 9, "source": 0, "target": 9,  "bond": 1},
+    {"conn": 10, "source": 0, "target": 10, "bond": 1},
+    {"conn": 11, "source": 1, "target": 11, "bond": 1},
+    {"conn": 12, "source": 1, "target": 12, "bond": 1},
+    {"conn": 13, "source": 1, "target": 13, "bond": 1},
+    {"conn": 14, "source": 1, "target": 14, "bond": 1},
+    {"conn": 15, "source": 1, "target": 15, "bond": 1},
+    {"conn": 16, "source": 1, "target": 16, "bond": 1},
+    {"conn": 17, "source": 1, "target": 17, "bond": 1},
+    {"conn": 18, "source": 1, "target": 18, "bond": 1},
+    {"conn": 19, "source": 6, "target": 19, "bond": 1},
+    {"conn": 20, "source": 6, "target": 20, "bond": 1},
+    {"conn": 21, "source": 6, "target": 21, "bond": 1},
+    {"conn": 22, "source": 11, "target": 22, "bond": 1},
+    {"conn": 23, "source": 11, "target": 23, "bond": 1},
+    {"conn": 24, "source": 11, "target": 24, "bond": 1},
+    {"conn": 25, "source": 11, "target": 25, "bond": 1},
+    {"conn": 26, "source": 11, "target": 26, "bond": 1},
+    {"conn": 27, "source": 11, "target": 27, "bond": 1},
+    {"conn": 28, "source": 11, "target": 28, "bond": 1},
+    {"conn": 29, "source": 11, "target": 29, "bond": 1},
+    {"conn": 30, "source": 11, "target": 30, "bond": 1},
+    {"conn": 31, "source": 11, "target": 31, "bond": 1},
+    {"conn": 32, "source": 11, "target": 32, "bond": 1},
+    {"conn": 33, "source": 11, "target": 33, "bond": 1},
+    {"conn": 34, "source": 11, "target": 34, "bond": 1},
+    {"conn": 35, "source": 11, "target": 35, "bond": 1},
+    {"conn": 36, "source": 16, "target": 36, "bond": 1},
+    {"conn": 37, "source": 16, "target": 37, "bond": 1},
+    {"conn": 38, "source": 16, "target": 38, "bond": 1},
+    {"conn": 39, "source": 16, "target": 39, "bond": 1},
+    {"conn": 40, "source": 16, "target": 40, "bond": 1}
   ]
-}
+};
+
 
 var width = 1200,
     height = 700;
@@ -115,11 +146,15 @@ var svg = d3.select("#msccell").append("svg")
 var force = d3.layout.force()
     .size([width, height])
     .charge(-400)
-    .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 20; });
+    .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 30; });
 
-d3.json("mscCell.json", function(error, graph) {
-  if (error) throw error;
+// d3.json("mscCell.json", function(error, graph) {
+//   if (error) throw error;
+//
+//});
 
+function draw(graph) {
+  
   force
       .nodes(graph.nodes)
       .links(graph.links)
@@ -161,7 +196,9 @@ d3.json("mscCell.json", function(error, graph) {
 
     node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
   }
-});
+};
+
+draw(mscCellData)
 </script>
 
 
