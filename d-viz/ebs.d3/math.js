@@ -10,3 +10,19 @@
 // console.log(addNodes(10));
 
 
+
+var myarr = [];
+function cellFn(cellName, cellSize){
+  for ( var i=0; i< cellSize; i++){
+    var obj = {
+      "name": '"' + cellName + '"',
+      "size": 6000
+  };
+return myarr.push(obj);
+  }
+}
+
+
+var myarr = cellFn('Cell100', 3);
+
+console.log(myarr);

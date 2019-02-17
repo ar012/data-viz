@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Explore Gabriele Volpi's corporate network</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/icon-icon-css/0.8.5/css/icon-icon.min.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.22.0/css/uikit.min.css" />
+
+  <style>
+    body {
+      height: auto;
+      margin: 0;
+      background-color: #ffffff;
+    }
+
+    svg {
+      display: block;
+    }
+
+    .node {
+        cursor: pointer;
+        stroke-width: 5;
+        fill: #b8e4f9;
+      }
+
+      .msc {
+        cursor: pointer;
+        stroke-width: 5;
+        fill: lightblue;
+      }
+
+      .gmsc {
+        cursor: pointer;
+        stroke-width: 5;
+        fill: #085242;
+      }
+
+      .mgw {
+        cursor: pointer;
+        stroke-width: 5;
+        fill: #b795d6;
+      }
+
+      .bsc {
+        cursor: pointer;
+        stroke-width: 5;
+        fill: #978752;
+      }
+
+     
+
+    /* .node {
+      cursor: pointer;
+      stroke: #E5F1B6;
+      stroke-width: 5;
+      fill: rgba(229, 241, 182, 0.67);
+    } */
+
+    .node text {
+      pointer-events: none;
+      font-family: "FontAwesome";
+      font-size: 2.5em;
+      fill: #333;
+    }
+
+    .edge {
+      cursor: pointer;
+      stroke-width: 5;
+    }
+
+    #tooltip {
+      position: absolute;
+      width: 300px;
+      height: auto;
+      -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+      -moz-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+      box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+      pointer-events: none;
+    }
+
+    #tooltip.hidden {
+      display: none;
+    }
+
+    #tooltip dl {
+      margin: 0;
+    }
+
+    #tooltip-edge {
+      position: absolute;
+      width: 300px;
+      height: auto;
+      -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+      -moz-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+      box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+      pointer-events: none;
+    }
+
+    #tooltip-edge.hidden {
+      display: none;
+    }
+
+    #tooltip-edge.panel-heading {
+      font-family: "FontAwesome";
+      font-size: 2.5em;
+    }
+
+    .company.hidden {
+      display: none;
+    }
+
+    .source.hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="tooltip" class="panel panel-default hidden">
+    <div class="panel-heading">
+      <h3 class="panel-title" id="name"></h3>
+      <small id="icon"></small>
+      <small id="jurisdiction"></small>
+    </div>
+    <div class="panel-body company hidden">
+      <dl>
+        <dt>Company Status</dt>
+        <dd><span id="status"></span> as of <span id="status-date"></span></dd>
+        <dt>Company Assets</dt>
+        <dd><span id="assets"></span> as of <span id="assets-date"></span></dd>
+        <dt>Volpi Role</dt>
+        <dd><span id="role"></span> from <span id="role-from"></span> to <span id="role-to"></span></dd>
+      </dl>
+    </div>
+    <div class="panel-footer source hidden">
+      <small>Source: <span id="source"></span></small>
+    </div>
+  </div>
+
+  <div id="tooltip-edge" class="panel panel-default hidden">
+    <div class="panel-heading">
+      <h3 class="panel-title" id="name-edge"></h3>
+    </div>
+    <div class="panel-body">
+      <p id="desc"></p>
+    </div>
+    <div class="panel-footer">
+      <small>Source: <span id="source-edge"></span></small>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  
+  <script>
+    // Dimensions
+    var width = 960,
+      height = 720,
+      aspect = width / height;
+
+    // Original data
+    var dataset = {
+      nodes: [{
+          id: "101",
+          code: "MSC01",
+          name: "MSC01",
+          type: "VMSC",
+          icon: "msc",
+          msc_gt: "88018123456",
+          brand: "Huawei",
+          os_platform: "MSOFT",
+          onair_date: "31 January 2002",
+          bhca_capacity: "5000",
+          vlr_capacity: "10000",
+          attached_subscriber_count: "6000",
+          site_address: "Uday Tower, Gulshan-1, Dhaka 1212",
+          source: "Dummy"
+        },
+        {
+          id: "102",
+          code: "MSC02",
+          name: "MSC02",
+          type: "VMSC",
+          icon: "msc",
+          msc_gt: "88018123456",
+          brand: "Huawei",
+          os_platform: "MSOFT",
+          onair_date: "31 January 2002",
+          bhca_capacity: "5000",
+          vlr_capacity: "10000",
+          attached_subscriber_count: "6000",
+          site_address: "Uday Tower, Gulshan-1, Dhaka 1212",
+          source: "Dummy"
+        },
+        {
+          id: "103",
+          code: "MSC03",
+          name: "MSC03",
+          type: "VMSC",
+          icon: "msc",
+          msc_gt: "88018123456",
+          brand: "Huawei",
+          os_platform: "MSOFT",
+          onair_date: "31 January 2002",
+          bhca_capacity: "5000",
+          vlr_capacity: "10000",
+          attached_subscriber_count: "6000",
+          site_address: "Uday Tower, Gulshan-1, Dhaka 1212",
+          source: "Dummy"
+        },
+        {
+          id: "104",
+          code: "MSC04",
+          name: "MSC04",
+          type: "VMSC",
+          icon: "msc",
+          msc_gt: "88018123456",
+          brand: "Huawei",
+          os_platform: "MSOFT",
+          onair_date: "31 January 2002",
+          bhca_capacity: "5000",
+          vlr_capacity: "10000",
+          attached_subscriber_count: "6000",
+          site_address: "Uday Tower, Gulshan-1, Dhaka 1212",
+          source: "Dummy"
+        },
+        {
+          id: "105",
+          code: "MSC05",
+          name: "MSC05",
+          type: "VMSC",
+          icon: "msc",
+          msc_gt: "88018123456",
+          brand: "Huawei",
+          os_platform: "MSOFT",
+          onair_date: "31 January 2002",
+          bhca_capacity: "5000",
+          vlr_capacity: "10000",
+          attached_subscriber_count: "6000",
+          site_address: "Uday Tower, Gulshan-1, Dhaka 1212",
+          source: "Dummy"
+        },
+        {
+          id: "106",
+          code: "GMSC01",
+          name: "GMSC01",
+          type: "GMSC",
+          icon: "gmsc",
+          msc_gt: "88018123456",
+          brand: "Huawei",
+          os_platform: "MSOFT",
+          onair_date: "31 January 2002",
+          bhca_capacity: "5000",
+          vlr_capacity: "10000",
+          attached_subscriber_count: "6000",
+          site_address: "Uday Tower, Gulshan-1, Dhaka 1212",
+          source: "Dummy"
+        },
+        {
+          id: "107",
+          code: "GMSC02",
+          name: "GMSC02",
+          type: "GMSC",
+          icon: "gmsc",
+          msc_gt: "88018123456",
+          brand: "Huawei",
+          os_platform: "MSOFT",
+          onair_date: "31 January 2002",
+          bhca_capacity: "5000",
+          vlr_capacity: "10000",
+          attached_subscriber_count: "6000",
+          site_address: "Uday Tower, Gulshan-1, Dhaka 1212",
+          source: "Dummy"
+        },
+        {
+          id: "108",
+          code: "GMSC03",
+          name: "GMSC03",
+          type: "GMSC",
+          icon: "gmsc",
+          msc_gt: "88018123456",
+          brand: "Huawei",
+          os_platform: "MSOFT",
+          onair_date: "31 January 2002",
+          bhca_capacity: "5000",
+          vlr_capacity: "10000",
+          attached_subscriber_count: "6000",
+          site_address: "Uday Tower, Gulshan-1, Dhaka 1212",
+          source: "Dummy"
+        },
+        {
+          id: "109",
+          code: "BSC01",
+          name: "BSC01",
+          type: "BSC",
+          icon: "bsc",
+          msc_gt: "88018123456",
+          brand: "Huawei",
+          os_platform: "MSOFT",
+          onair_date: "31 January 2002",
+          bhca_capacity: "5000",
+          vlr_capacity: "10000",
+          attached_subscriber_count: "6000",
+          site_address: "Uday Tower, Gulshan-1, Dhaka 1212",
+          source: "Dummy"
+        },
+        {
+          id: "110",
+          code: "BSC02",
+          name: "BSC02",
+          type: "BSC",
+          icon: "bsc",
+          msc_gt: "88018123456",
+          brand: "Huawei",
+          os_platform: "MSOFT",
+          onair_date: "31 January 2002",
+          bhca_capacity: "5000",
+          vlr_capacity: "10000",
+          attached_subscriber_count: "6000",
+          site_address: "Uday Tower, Gulshan-1, Dhaka 1212",
+          source: "Dummy"
+        }
+
+      ],
+
+      edges: [{
+          source: 0,
+          target: 1,
+          name: "MSC01 -> MSC02",
+          desc: "Connection from MSC01 to MSC02"
+        },
+        {
+          source: 0,
+          target: 2,
+          name: "MSC01 -> MSC03",
+          desc: "Connection from MSC01 to MSC03"
+        },
+        {
+          source: 0,
+          target: 3,
+          name: "MSC01 -> MSC04",
+          desc: "Connection from MSC01 to MSC04"
+        },
+        {
+          source: 0,
+          target: 4,
+          name: "MSC01 -> MSC05",
+          desc: "Connection from MSC01 to MSC05"
+        },
+      
+        {
+          source: 1,
+          target: 0,
+          name: "MSC02 -> MSC01",
+          desc: "Connection from MSC02 to MSC01"
+        },
+        {
+          source: 1,
+          target: 2,
+          name: "MSC02 -> MSC03",
+          desc: "Connection from MSC02 to MSC03"
+        },
+        {
+          source: 1,
+          target: 3,
+          name: "MSC02 -> MSC03",
+          desc: "Connection from MSC02 to MSC03"
+        },
+        {
+          source: 1,
+          target: 4,
+          name: "MSC02 -> MSC03",
+          desc: "Connection from MSC02 to MSC03"
+        },
+       
+        {
+          source: 1,
+          target: 5,
+          name: "MSC03 -> MSC01",
+          desc: "Connection from MSC03 to MSC01"
+        },
+        {
+          source: 2,
+          target: 6,
+          name: "MSC03 -> MSC05",
+          desc: "Connection from MSC03 to MSC05"
+        },
+        {
+          source: 3,
+          target: 7,
+          name: "MSC03 -> MSC01",
+          desc: "Connection from MSC03 to MSC01"
+        },
+        {
+          source: 2,
+          target: 8,
+          name: "MSC03 -> MSC05",
+          desc: "Connection from MSC03 to MSC05"
+        },
+        {
+          source: 2,
+          target: 9,
+          name: "MSC03 -> MSC05",
+          desc: "Connection from MSC03 to MSC05"
+        }
+      ]
+    };
+
+    // Create SVG element
+    var svg = d3.select("body")
+      .append("svg")
+      .attr("id", "graph")
+      .attr("preserveAspectRatio", "xMidYMid")
+      .attr("viewBox", "0 0 " + width + " " + height);
+
+    // Initialize a default force layout, using the nodes and edges in dataset
+    var force = d3.layout
+      .force()
+      .nodes(dataset.nodes)
+      .links(dataset.edges)
+      .size([width, height])
+      .gravity(.07)
+      .distance(180)
+      .charge(-1000)
+      .start();
+
+    // Define mouseoverNode behaviour
+    var mouseoverNode = function (d) {
+      // Highlight the circle stroke
+      d3.select(this)
+        .transition()
+        .duration(150)
+        .attr("stroke", "#d9534f");
+    };
+
+    // Define mousemoveNode (tooltip) behaviour
+    var mousemoveNode = function (d) {
+      // Get the mouse pointer's x/y values, then augment for the tooltip
+      var xPosition = parseFloat(d3.event.pageX + 10);
+      var yPosition = parseFloat(d3.event.pageY + 10);
+      // Update the tooltip position and content
+      d3.select("#tooltip")
+        .style("left", xPosition + "px")
+        .style("top", yPosition + "px");
+
+      d3.select("#name")
+        .text(d.name);
+
+      d3.select("#icon")
+        .attr("class", "icon-icon icon-icon-" + d.icon);
+
+      d3.select("#jurisdiction")
+        .text(d.jurisdiction);
+
+      d3.select("#status")
+        .text(d.companyStatus);
+
+      d3.select("#status-date")
+        .text(d.companyStatusDate);
+
+      d3.select("#assets")
+        .text(d.companyAssets);
+
+      d3.select("#assets-date")
+        .text(d.companyAssetsDate);
+
+      d3.select("#role")
+        .text(d.volpiRole);
+
+      d3.select("#role-from")
+        .text(d.volpiRoleFrom);
+
+      d3.select("#role-to")
+        .text(d.volpiRoleTo);
+
+      d3.select("#source")
+        .text(d.source);
+
+      // Show the tooltip
+      d3.select("#tooltip")
+        .classed("hidden", false);
+
+      d3.select(".company")
+        .classed("hidden", function () {
+          if (d.type == "individual") {
+            return true;
+          } else {
+            return false;
+          }
+        });
+
+      d3.select(".source")
+        .classed("hidden", function () {
+          if (d.type == "individual") {
+            return true;
+          } else {
+            return false;
+          }
+        });
+    };
+
+    // Define mouseoutNode behaviour
+    var mouseoutNode = function (d) {
+      // Unhighlight the circle stroke
+      d3.select(this)
+        .transition()
+        .duration(150)
+        .attr("stroke", "#eee");
+      // Hide the tooltip
+      d3.select("#tooltip")
+        .classed("hidden", true);
+    };
+
+    // Define mouseoverEdge behaviour
+    var mouseoverEdge = function (d) {
+      // Highlight the circle stroke
+      d3.select(this)
+        .transition()
+        .duration(150)
+        .attr("stroke", "#d9534f");
+    };
+
+    // Define mousemoveEdge (tooltip) behaviour
+    var mousemoveEdge = function (d) {
+      // Get the mouse pointer's x/y values, then augment for the tooltip
+      var xPosition = parseFloat(d3.event.pageX + 10);
+      var yPosition = parseFloat(d3.event.pageY + 10);
+      // Update the tooltip position and content
+      d3.select("#tooltip-edge")
+        .style("left", xPosition + "px")
+        .style("top", yPosition + "px");
+
+      d3.select("#name-edge")
+        .text(d.name);
+
+      d3.select("#desc")
+        .text(d.desc);
+
+      d3.select("#source-edge")
+        .text(d.infoSource);
+      // Show the tooltip
+      d3.select("#tooltip-edge")
+        .classed("hidden", false);
+    };
+
+    // Define mouseoutEdge behaviour
+    var mouseoutEdge = function (d) {
+      // Unhighlight the circle stroke
+      d3.select(this)
+        .transition()
+        .duration(150)
+        .attr("stroke", "#eee");
+      // Hide the tooltip
+      d3.select("#tooltip-edge")
+        .classed("hidden", true);
+    };
+
+    // Create edges as lines
+    var edge = svg.selectAll(".edge")
+      .data(dataset.edges)
+      .enter()
+      .append("line")
+      .attr("class", "edge");
+
+
+
+    // Create nodes
+    // var node = svg.selectAll(".node")
+    //   .data(dataset.nodes)
+    //   .enter()
+    //   .append("g")
+    //   .attr("class", "node")
+    //   .call(force.drag);
+
+      var node = svg.selectAll(".node")
+      .data(dataset.nodes)
+      .enter()
+      .append("g")
+      .attr("class", function(d) {
+          if (d.type == "VMSC") {
+            return "msc";
+          } else if (d.type == "GMSC") {
+            return "gmsc";
+          } else if (d.type == "BSC") {
+            return "bsc";
+          } else {
+            return "node";
+          }
+        })
+      .call(force.drag);
+   
+    // var node = ["msc", "gmsc", "mgw", "bsc"];
+
+    // Draw node circles
+    node.append("circle")
+      .attr("r", function (d) {
+        if (d.id == 0) {
+          return 50;
+        } else {
+          return 33;
+        }
+      })
+      .attr("stroke", "#eee")
+      .on("mouseover", mouseoverNode)
+      .on("mousemove", mousemoveNode)
+      .on("mouseout", mouseoutNode);
+
+    edge.attr("stroke", "#eee")
+      .on("mouseover", mouseoverEdge)
+      .on("mousemove", mousemoveEdge)
+      .on("mouseout", mouseoutEdge);
+
+    // Add node icons
+    node.append("text")
+      .attr("dx", function (d) {
+        if (d.type == "VMSC")
+          return -17.5;
+        else
+          return -14;
+      })
+      .attr("dy", 13)
+      .text(function (d) {
+        if (d.type == "individual")
+          return "\uf007";
+        if (d.name == "Football College Abuja")
+          return "\uf1e3";
+        else
+          return "\uf1ad";
+      });
+
+    // Every time the simulation "ticks", this will be called
+    force.on("tick", function () {
+      edge.attr("x1", function (d) {
+          return d.source.x;
+        })
+        .attr("y1", function (d) {
+          return d.source.y;
+        })
+        .attr("x2", function (d) {
+          return d.target.x;
+        })
+        .attr("y2", function (d) {
+          return d.target.y;
+        });
+
+      node.attr("transform", function (d) {
+        return "translate(" + d.x + "," + d.y + ")";
+      });
+    });
+
+    // Scale on window resize
+    $(window).on("resize", function () {
+        var graph = $("#graph"),
+          container = graph.parent(),
+          targetWidth = container.width();
+
+        graph.attr("width", targetWidth);
+        graph.attr("height", targetWidth / aspect);
+      })
+      .trigger("resize");
+  </script>
+</body>
+
+</html>
