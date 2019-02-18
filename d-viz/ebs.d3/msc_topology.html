@@ -2,26 +2,30 @@
 <html>
 
 <head>
-  <title>Explore Gabriele Volpi's corporate network</title>
+  <title>Mesh-Network</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/icon-icon-css/0.8.5/css/icon-icon.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/logo-icon-css/0.8.5/css/logo-icon.min.css"> -->
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.22.0/css/uikit.min.css" />
-
   <style>
     body {
       height: auto;
       margin: 0;
-      background-color: #ffffff;
+      background-color: #5cb85c;
     }
 
     svg {
       display: block;
     }
+
+    /* .node {
+      cursor: pointer;
+      stroke-width: 5;
+      fill: #ddd;
+    } */
 
     .node {
         cursor: pointer;
@@ -52,6 +56,7 @@
         stroke-width: 5;
         fill: #978752;
       }
+
 
     .node text {
       pointer-events: none;
@@ -116,24 +121,24 @@
   <div id="tooltip" class="panel panel-default hidden">
     <div class="panel-heading">
       <h3 class="panel-title" id="name"></h3>
-      <small id="icon"></small>
-     
+      <small id="logo"></small>
+
     </div>
+
     <div class="panel-body company hidden">
       <dl>
-        <dt>Company Status</dt>
-        <dd><span id="status"></span> as of <span id="status-date"></span></dd>
-        <dt>Company Assets</dt>
-        <dd><span id="assets"></span> as of <span id="assets-date"></span></dd>
-        <dt>Volpi Role</dt>
-        <dd><span id="role"></span> from <span id="role-from"></span> to <span id="role-to"></span></dd>
+        <dt>Status</dt>
+        <dd>Code: <span id="code"></span>, Type: <span id="type"></span></dd>
+        <dd>MSC GT: <span id="msc_gt"></span>, Brand: <span id="brand"></span>, OS Platform: <span id="os_platform"></span></dd>
+        <dd>Onair Date: <span id="onair_date"></span></dd>
+        <dd>BHCA Capacity: <span id="bhca_capacity"></span>, VLR Capacity: <span id="vlr_capacity"></span></dd>
+        <dd>Site Address:<span id="site_address"></span>, Source: <span id="source"></span></dd>
       </dl>
     </div>
-    <div class="panel-footer source hidden">
+    <!-- <div class="panel-footer source hidden">
       <small>Source: <span id="source"></span></small>
-    </div>
+    </div> -->
   </div>
-
   <div id="tooltip-edge" class="panel panel-default hidden">
     <div class="panel-heading">
       <h3 class="panel-title" id="name-edge"></h3>
@@ -147,7 +152,6 @@
   </div>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  
   <script>
     // Dimensions
     var width = 960,
@@ -238,8 +242,8 @@
         },
         {
           id: "106",
-          code: "GMSC01",
-          name: "GMSC01",
+          code: "GMSC06",
+          name: "GMSC06",
           type: "GMSC",
           icon: "gmsc",
           msc_gt: "88018123456",
@@ -254,8 +258,8 @@
         },
         {
           id: "107",
-          code: "GMSC02",
-          name: "GMSC02",
+          code: "GMSC07",
+          name: "GMSC07",
           type: "GMSC",
           icon: "gmsc",
           msc_gt: "88018123456",
@@ -270,8 +274,8 @@
         },
         {
           id: "108",
-          code: "GMSC03",
-          name: "GMSC03",
+          code: "GMSC08",
+          name: "GMSC08",
           type: "GMSC",
           icon: "gmsc",
           msc_gt: "88018123456",
@@ -286,8 +290,8 @@
         },
         {
           id: "109",
-          code: "BSC01",
-          name: "BSC01",
+          code: "BSC09",
+          name: "BSC09",
           type: "BSC",
           icon: "bsc",
           msc_gt: "88018123456",
@@ -302,8 +306,8 @@
         },
         {
           id: "110",
-          code: "BSC02",
-          name: "BSC02",
+          code: "BSC10",
+          name: "BSC10",
           type: "BSC",
           icon: "bsc",
           msc_gt: "88018123456",
@@ -316,7 +320,6 @@
           site_address: "Uday Tower, Gulshan-1, Dhaka 1212",
           source: "Dummy"
         }
-
       ],
 
       edges: [{
@@ -343,18 +346,12 @@
           name: "MSC01 -> MSC05",
           desc: "Connection from MSC01 to MSC05"
         },
-      
-        {
-          source: 1,
-          target: 0,
-          name: "MSC02 -> MSC01",
-          desc: "Connection from MSC02 to MSC01"
-        },
+
         {
           source: 1,
           target: 2,
-          name: "MSC02 -> MSC03",
-          desc: "Connection from MSC02 to MSC03"
+          name: "MSC02 -> MSC01",
+          desc: "Connection from MSC02 to MSC01"
         },
         {
           source: 1,
@@ -368,33 +365,57 @@
           name: "MSC02 -> MSC03",
           desc: "Connection from MSC02 to MSC03"
         },
-       
         {
-          source: 1,
+          source: 2,
+          target: 3,
+          name: "MSC02 -> MSC03",
+          desc: "Connection from MSC02 to MSC03"
+        },
+
+        {
+          source: 2,
+          target: 4,
+          name: "MSC03 -> MSC01",
+          desc: "Connection from MSC03 to MSC01"
+        },
+        {
+          source: 3,
+          target: 4,
+          name: "MSC03 -> MSC05",
+          desc: "Connection from MSC03 to MSC05"
+        },
+        {
+          source: 3,
           target: 5,
           name: "MSC03 -> MSC01",
           desc: "Connection from MSC03 to MSC01"
         },
         {
           source: 2,
+          target: 5,
+          name: "MSC03 -> MSC05",
+          desc: "Connection from MSC03 to MSC05"
+        },
+        {
+          source: 1,
           target: 6,
           name: "MSC03 -> MSC05",
           desc: "Connection from MSC03 to MSC05"
         },
         {
-          source: 3,
+          source: 0,
           target: 7,
-          name: "MSC03 -> MSC01",
-          desc: "Connection from MSC03 to MSC01"
+          name: "MSC03 -> MSC05",
+          desc: "Connection from MSC03 to MSC05"
         },
         {
-          source: 2,
+          source: 0,
           target: 8,
           name: "MSC03 -> MSC05",
           desc: "Connection from MSC03 to MSC05"
         },
         {
-          source: 2,
+          source: 0,
           target: 9,
           name: "MSC03 -> MSC05",
           desc: "Connection from MSC03 to MSC05"
@@ -416,7 +437,7 @@
       .links(dataset.edges)
       .size([width, height])
       .gravity(.07)
-      .distance(180)
+      .distance(170)
       .charge(-1000)
       .start();
 
@@ -438,35 +459,44 @@
       d3.select("#tooltip")
         .style("left", xPosition + "px")
         .style("top", yPosition + "px");
-
+      // Set msc name
       d3.select("#name")
         .text(d.name);
+      // Set company logo/icon
+      // d3.select("#logo")
+      //   .attr("class", "logo-icon logo-icon-" + d.logo);
+      d3.select("#logo")
+        .text(d.icon);
 
-      d3.select("#icon")
-        .attr("class", "icon-icon icon-icon-" + d.icon);
+      d3.select("#code")
+        .text(d.code);
 
-      
+      d3.select("#type")
+        .text(d.type);
 
-      d3.select("#status")
-        .text(d.companyStatus);
+      d3.select("#msc_gt")
+        .text(d.msc_gt);
 
-      d3.select("#status-date")
-        .text(d.companyStatusDate);
+      d3.select("#brand")
+        .text(d.brand);
 
-      d3.select("#assets")
-        .text(d.companyAssets);
+      d3.select("#os_platform")
+        .text(d.os_platform);
 
-      d3.select("#assets-date")
-        .text(d.companyAssetsDate);
+      d3.select("#onair_date")
+        .text(d.onair_date);
 
-      d3.select("#role")
-        .text(d.volpiRole);
+      d3.select("#bhca_capacity")
+        .text(d.bhca_capacity);
 
-      d3.select("#role-from")
-        .text(d.volpiRoleFrom);
+      d3.select("#vlr_capacity")
+        .text(d.vlr_capacity);
 
-      d3.select("#role-to")
-        .text(d.volpiRoleTo);
+      d3.select("#attached_subscriber_count")
+        .text(d.attached_subscriber_count);
+
+      d3.select("#site_address")
+        .text(d.site_address);
 
       d3.select("#source")
         .text(d.source);
@@ -531,6 +561,8 @@
       d3.select("#desc")
         .text(d.desc);
 
+      d3.select("#source-edge")
+        .text(d.infoSource);
       // Show the tooltip
       d3.select("#tooltip-edge")
         .classed("hidden", false);
@@ -555,8 +587,6 @@
       .append("line")
       .attr("class", "edge");
 
-
-
     // Create nodes
     var node = svg.selectAll(".node")
       .data(dataset.nodes)
@@ -565,32 +595,13 @@
       .attr("class", "node")
       .call(force.drag);
 
-      // var node = svg.selectAll(".node")
-      // .data(dataset.nodes)
-      // .enter()
-      // .append("g")
-      // .attr("class", function(d) {
-      //     if (d.type == "VMSC") {
-      //       return "msc";
-      //     } else if (d.type == "GMSC") {
-      //       return "gmsc";
-      //     } else if (d.type == "BSC") {
-      //       return "bsc";
-      //     } else {
-      //       return "node";
-      //     }
-      //   })
-      // .call(force.drag);
-   
-    // var node = ["msc", "gmsc", "mgw", "bsc"];
-
     // Draw node circles
     node.append("circle")
       .attr("r", function (d) {
-        if (d.id == 0) {
-          return 50;
-        } else {
+        if (d.type == "VMSC") {
           return 33;
+        } else {
+          return 30;
         }
       })
       .attr("stroke", "#eee")
@@ -601,24 +612,19 @@
     edge.attr("stroke", "#eee")
       .on("mouseover", mouseoverEdge)
       .on("mousemove", mousemoveEdge)
-      .on("mouseout", mouseoutEdge);
+      .on("mouseout", mouseoutEdge);;
 
     // Add node icons
     node.append("text")
-      .attr("dx", function (d) {
-        if (d.type == "VMSC")
-          return -17.5;
-        else
-          return -14;
-      })
-      .attr("dy", 13)
+      .attr("dx", -19)
+      .attr("dy", 15)
       .text(function (d) {
-        if (d.type == "individual")
-          return "\uf007";
-        if (d.name == "Football College Abuja")
-          return "\uf1e3";
+        if (d.type == "VMSC")
+          return "\uf233";
+        if (d.type == "GMSC")
+          return "\uf108";
         else
-          return "\uf1ad";
+          return "\uf108";
       });
 
     // Every time the simulation "ticks", this will be called
