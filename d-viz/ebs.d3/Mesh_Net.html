@@ -558,41 +558,42 @@
 
 
     // Create nodes
-    var node = svg.selectAll(".node")
+    // var node = svg.selectAll(".node")
+    //   .data(dataset.nodes)
+    //   .enter()
+    //   .append("g")
+    //   .attr("class", "node")
+    //   .call(force.drag);
+
+      var node = svg.selectAll(".node")
       .data(dataset.nodes)
       .enter()
       .append("g")
-      .attr("class", "node")
+      .attr("class", function(d) {
+          if (d.type == "VMSC") {
+            return "msc";
+          } else if (d.type == "GMSC") {
+            return "gmsc";
+          } else if (d.type == "BSC") {
+            return "bsc";
+          } else {
+            return "node";
+          }
+        })
       .call(force.drag);
-
-      // var node = svg.selectAll(".node")
-      // .data(dataset.nodes)
-      // .enter()
-      // .append("g")
-      // .attr("class", function(d) {
-      //     if (d.type == "VMSC") {
-      //       return "msc";
-      //     } else if (d.type == "GMSC") {
-      //       return "gmsc";
-      //     } else if (d.type == "BSC") {
-      //       return "bsc";
-      //     } else {
-      //       return "node";
-      //     }
-      //   })
-      // .call(force.drag);
    
-    // var node = ["msc", "gmsc", "mgw", "bsc"];
+   
 
     // Draw node circles
     node.append("circle")
-      .attr("r", function (d) {
-        if (d.id == 0) {
-          return 50;
-        } else {
-          return 33;
-        }
-      })
+      // .attr("r", function (d) {
+      //   if (d.id == 0) {
+      //     return 50;
+      //   } else {
+      //     return 33;
+      //   }
+      // })
+      .attr("r", 33)
       .attr("stroke", "#eee")
       .on("mouseover", mouseoverNode)
       .on("mousemove", mousemoveNode)
@@ -604,21 +605,34 @@
       .on("mouseout", mouseoutEdge);
 
     // Add node icons
+    // node.append("text")
+    //   .attr("dx", function (d) {
+    //     if (d.type == "VMSC")
+    //       return -17.5;
+    //     else
+    //       return -14;
+    //   })
+    //   .attr("dy", 13)
+    //   .text(function (d) {
+    //     if (d.type == "individual")
+    //       return "\uf007";
+    //     if (d.name == "Football College Abuja")
+    //       return "\uf1e3";
+    //     else
+    //       return "\uf1ad";
+    //   });
+
+    // Add node contents
     node.append("text")
-      .attr("dx", function (d) {
-        if (d.type == "VMSC")
-          return -17.5;
-        else
-          return -14;
-      })
-      .attr("dy", 13)
+      .attr("dx", -19)
+      .attr("dy", 15)
       .text(function (d) {
-        if (d.type == "individual")
-          return "\uf007";
-        if (d.name == "Football College Abuja")
-          return "\uf1e3";
+        if (d.type == "VMSC")
+          return "VMSC";
+        if (d.type == "GMSC")
+          return "GMSC";
         else
-          return "\uf1ad";
+          return "BSC";
       });
 
     // Every time the simulation "ticks", this will be called

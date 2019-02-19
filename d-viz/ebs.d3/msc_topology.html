@@ -11,57 +11,25 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.22.0/css/uikit.min.css" />
   <style>
-    body {
+    /* body {
       height: auto;
       margin: 0;
-      background-color: #5cb85c;
-    }
+    }  */
 
     svg {
       display: block;
     }
 
-    /* .node {
-      cursor: pointer;
-      stroke-width: 5;
-      fill: #ddd;
-    } */
-
     .node {
         cursor: pointer;
         stroke-width: 5;
-        fill: #b8e4f9;
+        /* fill: #b8e4f9; */
       }
-
-      .msc {
-        cursor: pointer;
-        stroke-width: 5;
-        fill: lightblue;
-      }
-
-      .gmsc {
-        cursor: pointer;
-        stroke-width: 5;
-        fill: #085242;
-      }
-
-      .mgw {
-        cursor: pointer;
-        stroke-width: 5;
-        fill: #b795d6;
-      }
-
-      .bsc {
-        cursor: pointer;
-        stroke-width: 5;
-        fill: #978752;
-      }
-
 
     .node text {
       pointer-events: none;
       font-family: "FontAwesome";
-      font-size: 2.5em;
+      font-size: 1.5em;
       fill: #333;
     }
 
@@ -114,10 +82,16 @@
     .source.hidden {
       display: none;
     }
+
+
+
   </style>
 </head>
 
 <body>
+
+  <div id="cells_container"></div>
+
   <div id="tooltip" class="panel panel-default hidden">
     <div class="panel-heading">
       <h3 class="panel-title" id="name"></h3>
@@ -132,7 +106,7 @@
         <dd>MSC GT: <span id="msc_gt"></span>, Brand: <span id="brand"></span>, OS Platform: <span id="os_platform"></span></dd>
         <dd>Onair Date: <span id="onair_date"></span></dd>
         <dd>BHCA Capacity: <span id="bhca_capacity"></span>, VLR Capacity: <span id="vlr_capacity"></span></dd>
-        <dd>Site Address:<span id="site_address"></span>, Source: <span id="source"></span></dd>
+        <dd>Site Address: <span id="site_address"></span>, Source: <span id="source"></span></dd>
       </dl>
     </div>
     <!-- <div class="panel-footer source hidden">
@@ -146,12 +120,16 @@
     <div class="panel-body">
       <p id="desc"></p>
     </div>
-    <div class="panel-footer">
+    <!-- <div class="panel-footer">
       <small>Source: <span id="source-edge"></span></small>
-    </div>
+    </div> -->
   </div>
+
+
+
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
   <script>
     // Dimensions
     var width = 960,
@@ -350,81 +328,81 @@
         {
           source: 1,
           target: 2,
-          name: "MSC02 -> MSC01",
-          desc: "Connection from MSC02 to MSC01"
+          name: "MSC02 -> MSC03",
+          desc: "Connection from MSC02 to MSC03"
         },
         {
           source: 1,
           target: 3,
-          name: "MSC02 -> MSC03",
-          desc: "Connection from MSC02 to MSC03"
+          name: "MSC02 -> MSC04",
+          desc: "Connection from MSC02 to MSC04"
         },
         {
           source: 1,
           target: 4,
-          name: "MSC02 -> MSC03",
-          desc: "Connection from MSC02 to MSC03"
+          name: "MSC02 -> MSC05",
+          desc: "Connection from MSC02 to MSC05"
         },
         {
           source: 2,
           target: 3,
-          name: "MSC02 -> MSC03",
-          desc: "Connection from MSC02 to MSC03"
+          name: "MSC03 -> MSC04",
+          desc: "Connection from MSC03 to MSC04"
         },
 
         {
           source: 2,
           target: 4,
-          name: "MSC03 -> MSC01",
-          desc: "Connection from MSC03 to MSC01"
+          name: "MSC03 -> MSC05",
+          desc: "Connection from MSC03 to MSC05"
         },
         {
           source: 3,
           target: 4,
-          name: "MSC03 -> MSC05",
+          name: "MSC04 -> MSC05",
           desc: "Connection from MSC03 to MSC05"
         },
         {
           source: 3,
           target: 5,
-          name: "MSC03 -> MSC01",
-          desc: "Connection from MSC03 to MSC01"
+          name: "MSC04 -> GMSC06",
+          desc: "Connection from MSC04 to GMSC06"
         },
         {
           source: 2,
           target: 5,
-          name: "MSC03 -> MSC05",
-          desc: "Connection from MSC03 to MSC05"
+          name: "MSC03 -> GMSC06",
+          desc: "Connection from MSC03 to GMSC06"
         },
         {
           source: 1,
           target: 6,
-          name: "MSC03 -> MSC05",
-          desc: "Connection from MSC03 to MSC05"
+          name: "MSC02 -> GMSC07",
+          desc: "Connection from MSC02 to GMSC07"
         },
         {
           source: 0,
           target: 7,
-          name: "MSC03 -> MSC05",
-          desc: "Connection from MSC03 to MSC05"
+          name: "MSC01 -> GMSC08",
+          desc: "Connection from MSC01 to GMSC08"
         },
         {
           source: 0,
           target: 8,
-          name: "MSC03 -> MSC05",
-          desc: "Connection from MSC03 to MSC05"
+          name: "MSC01 -> BSC09",
+          desc: "Connection from MSC01 to BSC09"
         },
         {
           source: 0,
           target: 9,
-          name: "MSC03 -> MSC05",
-          desc: "Connection from MSC03 to MSC05"
+          name: "MSC01 -> BSC10",
+          desc: "Connection from MSC01 to BSC10"
         }
       ]
     };
 
     // Create SVG element
-    var svg = d3.select("body")
+    var svg = d3.select("#cells_container")
       .append("svg")
       .attr("id", "graph")
       .attr("preserveAspectRatio", "xMidYMid")
@@ -437,7 +415,7 @@
       .links(dataset.edges)
       .size([width, height])
       .gravity(.07)
-      .distance(170)
+      .distance(150)
       .charge(-1000)
       .start();
 
@@ -561,8 +539,9 @@
       d3.select("#desc")
         .text(d.desc);
 
-      d3.select("#source-edge")
-        .text(d.infoSource);
+      // d3.select("#source-edge")
+      //   .text(d.infoSource);
+
       // Show the tooltip
       d3.select("#tooltip-edge")
         .classed("hidden", false);
@@ -593,6 +572,17 @@
       .enter()
       .append("g")
       .attr("class", "node")
+      .attr("fill", function (d) {
+          if (d.type == "VMSC") {
+            return "#F8C471  ";
+          } else if (d.type == "GMSC") {
+            return "#91DDF7";
+          } else if (d.type == "MGW") {
+            return "#b795d6";
+          } else {
+            return "#978752";  // for BSC
+          }
+        })
       .call(force.drag);
 
     // Draw node circles
@@ -609,22 +599,30 @@
       .on("mousemove", mousemoveNode)
       .on("mouseout", mouseoutNode);
 
-    edge.attr("stroke", "#eee")
+    edge.attr("stroke", "#ccc")
       .on("mouseover", mouseoverEdge)
       .on("mousemove", mousemoveEdge)
       .on("mouseout", mouseoutEdge);;
 
     // Add node icons
+    // node.append("text")
+    //   .attr("dx", -19)
+    //   .attr("dy", 15)
+    //   .text(function (d) {
+    //     if (d.type == "VMSC")
+    //       return "\uf233";
+    //     if (d.type == "GMSC")
+    //       return "\uf108";
+    //     else
+    //       return "\uf108";
+    //   });
+
+
     node.append("text")
-      .attr("dx", -19)
-      .attr("dy", 15)
+      .attr("dx", -25)
+      .attr("dy", 8)
       .text(function (d) {
-        if (d.type == "VMSC")
-          return "\uf233";
-        if (d.type == "GMSC")
-          return "\uf108";
-        else
-          return "\uf108";
+          return d.name;
       });
 
     // Every time the simulation "ticks", this will be called
@@ -658,6 +656,7 @@
       })
       .trigger("resize");
   </script>
+
 </body>
 
 </html>
