@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Partially connected wireless meshnet topology</title>
+  <meta charset="utf-8">
+
+
+  </style>
+</head>
+
+<body>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+
+  <div>Hello</div>
+
+  <div id="content">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+
+
+
+
+
+  <script>
+   var myData = ['A', 'B', 'C', 'D', 'E'];
+
+var u = d3.select('#content')
+  .selectAll('div')
+  .data(myData);
+
+u.enter()
+  .append('div');
+
+u.text(function(d) {
+  return d;
+});
+  </script>
+
+</body>
+
+</html>

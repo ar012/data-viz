@@ -1,0 +1,148 @@
+{
+    "name": "MSC023",
+    "children": [{
+            "name": "BTS101",
+            "children": [{
+                "name": "Cell1011",
+                "size": 5000
+            }, {
+                "name": "Cell1012",
+                "size": 5000
+            }, {
+                "name": "Cell1013",
+                "size": 5000
+            }]
+        },
+        {
+            "name": "BTS102",
+            "children": [{
+                    "name": "Cell1021",
+                    "size": 5000
+                },
+                {
+                    "name": "Cell1022",
+                    "size": 5000
+                },
+                {
+                    "name": "Cell1023",
+                    "size": 5000
+                }
+            ]
+        },
+        {
+            "name": "BTS103",
+            "children": [{
+                    "name": "Cell1031",
+                    "size": 17010
+                },
+                {
+                    "name": "Cell1032",
+                    "size": 5842
+                },
+                {
+                    "name": "Cell1033",
+                    "size": 1041
+                }
+            ]
+        },
+        {
+            "name": "BTS104",
+            "children": [{
+                    "name": "Cell1041",
+                    "size": 8833
+                },
+                {
+                    "name": "Cell1042",
+                    "size": 1732
+                },
+                {
+                    "name": "Cell1043",
+                    "size": 3623
+                }
+            ]
+        },
+
+        {
+            "name": "BTS105",
+            "children": [{
+                "name": "Cell1051",
+                "size": 8833
+            }, {
+                "name": "Cell1052",
+                "size": 1732
+            }, {
+                "name": "Cell1053",
+                "size": 3623
+            }]
+        },
+        {
+            "name": "BTS106",
+            "children": [{
+                "name": "Cell1061",
+                "size": 8833
+            }, {
+                "name": "Cell1062",
+                "size": 1732
+            }, {
+                "name": "Cell1063",
+                "size": 3623
+            }]
+        },
+        {
+            "name": "BTS107",
+            "children": [{
+                "name": "Cell1071",
+                "size": 8833
+            }, {
+                "name": "Cell1072",
+                "size": 1732
+            }, {
+                "name": "Cell1073",
+                "size": 3623
+            }]
+        },
+        {
+            "name": "BTS108",
+            "children": [{
+                "name": "Cell1081",
+                "size": 8833
+            }, {
+                "name": "Cell1082",
+                "size": 1732
+            }, {
+                "name": "Cell1083",
+                "size": 3623
+            }]
+        },
+        {
+            "name": "BTS110",
+            "children": [{
+                "name": "Cell1101",
+                "size": 8833
+            }, {
+                "name": "Cell1102",
+                "size": 1732
+            }, {
+                "name": "Cell1103",
+                "size": 3623
+            }]
+        },
+        {
+            "name": "BTS110",
+            "children": [{
+                "name": "Cell1101",
+                "size": 8833
+            }, {
+                "name": "Cell1102",
+                "size": 1732
+            }, {
+                "name": "Cell1103",
+                "size": 3623
+            }]
+        }
+
+
+
+
+    ]
+}
