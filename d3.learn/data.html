@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>D3 Basic</title>
+  <script src="../d3/d3.min.js"></script>
+
+
+  <style>
+    #chart{
+      width: 500px;
+      height: 600px;
+      background: #dddddd;
+      border: 3px solid #ccc;
+    }
+    .bar{
+      width: 10px;
+      background: lightgreen;
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- <div></div>
+  <script>
+    var el    = d3.select('body')
+        .append('p')
+        // .attr('class', 'foo')
+        // .attr('class', 'bar')
+
+        .classed('foo', 'true')
+        .classed('bar', 'true')
+
+        .style('color', 'red')
+
+        .text('Welcome to d3');
+
+    console.log( el );
+
+  </script> -->
+
+
+  <!-- <script>
+    var dataset = [10, 11, 12, 13, 14, 15, 16, 17, 18];
+
+    var el = d3.select('body')
+        .selectAll('p')
+        .data(dataset)
+        .enter()
+        .append('p')
+        .text(function(d){
+          return 'This paragraph is binded to the number ' + d;
+        })
+
+        .attr('class', function (d) { 
+          if(d > 12 ){
+            return 'foo';
+          } else{
+            return null;
+          }
+         })
+
+         .classed( 'bar', function(d){
+           return d < 12;
+         })
+
+        .style('color', function(d){
+          if ( d < 15 ) {
+            return 'blue';
+          } else {
+            return 'red';
+          }
+        })
+  </script> -->
+
+
+  <div id="chart"></div>
+
+  <script>
+  var data = [];
+
+  for (var i = 0; i < 20; i++){
+    var num = Math.floor(d3.randomUniform(1, 50)());
+    data.push(num);
+  }
+  
+  // console.log(data);
+
+  d3.select('#chart')
+      .selectAll('div')
+      .data(data)
+      .enter()
+      .append('div')
+      .attr('class', 'bar')
+      .style( 'height', function(d){
+        var height = d * 3;
+        return height + 'px';
+      })
+
+
+
+  </script>
+
+
+<script src=""></script>
+
+</body>
+</html>
